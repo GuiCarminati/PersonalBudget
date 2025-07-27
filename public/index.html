@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Personal Budget</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Personal Budget</h1>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+    <p>&nbsp</p>
+    <h2>My Total Balance</h2>
+    <div class="balance-container">
+        <div id="balance-table">
+            <table style="width: 500px;">
+                <tbody>
+                    <tr style="font-weight: bold;" id="balance-table-header">
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                        <td>Budget</td>
+                        <td>Used</td>
+                        <td>Balance</td>
+                    </tr>
+                    <div id="envelopes-table-rows">
+                        <tr id="balance-row">
+                            <td>&nbsp</td>
+                            <td>&nbsp</td>
+                            <td>&nbsp</td>
+                            <td>€2,200.00</td>
+                            <td>€1,874.00</td>
+                            <td>€326.00</td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p>&nbsp</p>
+    <h2>My Envelopes</h2>
+    <div class="envelopes-container">
+        <div id="envelopes-table">
+            <table style="width: 500px;">
+                <tbody>
+                    <tr style="font-weight: bold;" id="envelopes-table-header">
+                        <td>Envelope</td>
+                        <td>Budget</td>
+                        <td>Used</td>
+                        <td>Balance</td>
+                    </tr>
+                    <div id="envelopes-table-rows">
+                        <tr id="env1-row">
+                            <td>Groceries</td>
+                            <td>€500.00</td>
+                            <td>€289.00</td>
+                            <td>€211.00</td>
+                            <td><button id="env1-button">Update</button></td>
+                        </tr>
+                        <tr id="env2-row">
+                            <td>Leisure</td>
+                            <td>€200.00</td>
+                            <td>€85.00</td>
+                            <td>€115.00</td>
+                            <td><button id="env2-button">Update</button></td>
+                        </tr>
+                        <tr id="env3-row">
+                            <td>Rent</td>
+                            <td>€1500.00</td>
+                            <td>€1500.00</td>
+                            <td>€0.00</td>
+                            <td><button id="env3-button">Update</button></td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+        <button id="new-envelope-button">Add new envelope</button>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
