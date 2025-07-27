@@ -10,7 +10,7 @@ function isValid(env){
     return true;
 }
 
-function createEnvelope(name,budget,startingBalance){
+function createEnvelope(name,budget,startingBalance){ // todo: update to take newInstance as a parameter
     const newId = envelopeIdCounter;
     const newEnvelope = new Envelope(newId,name,budget,startingBalance);
     if(isValid(newEnvelope)){
