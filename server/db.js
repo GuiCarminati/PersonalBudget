@@ -10,12 +10,17 @@ function isValid(env){
     return true;
 }
 
-function createEnvelope(name,budget,startingBalance){ // todo: update to take newInstance as a parameter
-    const newId = envelopeIdCounter;
+function envelopeConstructor(name,budget,startingBalance,id=null){
+    const newId = id || envelopeIdCounter;
     const newEnvelope = new Envelope(newId,name,budget,startingBalance);
+    return newEnvelope;
+}
+
+function createEnvelope(newEnvelope){
     if(isValid(newEnvelope)){
         envelopes.push(newEnvelope);
         envelopeIdCounter++;
+        return newEnvelope;
     }
 }
 
@@ -47,18 +52,21 @@ function updateBalance(id,transactionValue){
 
     env.currentBalance = newBalance;
     console.log(`${transactionValue} added or removed to Envelope ${env.name}(${env.id}). New balance is ${newBalance}`);
+    return env;
 }
 
 function updateInstance(newInstance){
-    const index = getEnvelopeIndexById(newInstance.id);
     if(isValid(newInstance)){
+        const index = getEnvelopeIndexById(newInstance.id);
         envelopes[index] = newInstance;
+        return env;
     }
 }
 
 function archiveEnvelope(id,archiveBoolean=true){
     const env = getEnvelopeById(id);
     env.archived = archiveBoolean;
+    return env;
 }
 
 function deleteEnvelope(id){
@@ -71,6 +79,7 @@ function deleteEnvelope(id){
 }
 
 module.exports = {
+    envelopeConstructor,
     createEnvelope,
     getEnvelopeById,
     getAllEnvelopes,
