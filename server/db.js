@@ -11,7 +11,7 @@ function isValid(env){
 }
 
 function envelopeConstructor(name,budget,startingBalance,id=null){
-    const newId = id || envelopeIdCounter;
+    const newId = id || envelopeIdCounter+1;
     const newEnvelope = new Envelope(newId,name,budget,startingBalance);
     return newEnvelope;
 }
@@ -59,7 +59,7 @@ function updateInstance(newInstance){
     if(isValid(newInstance)){
         const index = getEnvelopeIndexById(newInstance.id);
         envelopes[index] = newInstance;
-        return env;
+        return envelopes[index];
     }
 }
 
@@ -92,22 +92,25 @@ module.exports = {
 
 
 // tests
-/*
-createEnvelope('Groceries',0,450); // id=1
-createEnvelope('Leisure',0,150); // id=2
-createEnvelope('Holidays Jan',1500,1500); // id=3, temporary envelope
+// /*
+const groceries = envelopeConstructor('Groceries',450,450);
+createEnvelope(groceries); // id=1
+const leisure = envelopeConstructor('Leisure',150,150);
+createEnvelope(leisure); // id=2
+const holidays = envelopeConstructor('Holidays Jan',1500,1500);
+createEnvelope(holidays); // id=3, temporary envelope
 
-updateBalance(3,-1500); // holidays have passed, balance was used
-envelopes[2].archived = true // archive used envelope
+// updateBalance(3,-1500); // holidays have passed, balance was used
+// envelopes[2].archived = true // archive used envelope
 
 // add some transactions to existing envelopes
-updateBalance(1,-110);
-updateBalance(1,-57);
-updateBalance(2,28);
+// updateBalance(1,-110);
+// updateBalance(1,-57);
+// updateBalance(2,28);
 
 // show updated envelopes
-console.log('All envelopes: ');
-console.log(getAllEnvelopes());
-console.log('Archived: ');
-console.log(getAllArchivedEnvelopes());
+// console.log('All envelopes: ');
+// console.log(getAllEnvelopes());
+// console.log('Archived: ');
+// console.log(getAllArchivedEnvelopes());
 // */

@@ -1,11 +1,12 @@
 const express = require('express');
-// const errorhandler = require('errorhandler');
+const errorhandler = require('errorhandler');
 const db = require('./db');
 
 const apiRouter = express.Router();
 module.exports = apiRouter;
 
 apiRouter.get('/',getAllEnvelopes);
+apiRouter.get('/archived',getArchivedEnvelopes);
 apiRouter.param('id',processId);
 apiRouter.get('/:id',getEnvelope);
 apiRouter.post('/',newEnvelopeInstance,createEnvelope);
@@ -15,15 +16,20 @@ apiRouter.put('/:id/archive',archiveEnvelope);
 apiRouter.delete('/:id',deleteEnvelope);
 
 // error handler
-apiRouter.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ message: err.message });
-});
+// apiRouter.use((err, req, res, next) => {
+//   res.status(err.status || 500).json({ message: err.message });
+// });
 
-// apiRouter.use(errorhandler());
+apiRouter.use(errorhandler());
 
 // function declarations
 function getAllEnvelopes(req,res,next){
     const envelopes = db.getAllEnvelopes();
+    res.status(200).send(envelopes);
+}
+
+function getArchivedEnvelopes(req,res,next){
+    const envelopes = db.getAllArchivedEnvelopes();
     res.status(200).send(envelopes);
 }
 
@@ -41,7 +47,7 @@ function createEnvelope(req,res,next){
 }
 
 function updateEnvelope(req,res,next){
-    const updated = db.updateEnvelope(req.newInstance);
+    const updated = db.updateInstance(req.newInstance);
     if(updated){
         res.status(201).send(updated);
     } else {
@@ -62,7 +68,7 @@ function updateBalance(req,res,next){
 
 function archiveEnvelope(req,res,next){
     const id = req.found.id;
-    const archiveBoolean = req.body.archiveBoolean;
+    const archiveBoolean = !(req.found.archived); // flips current archived state    
     try {
         db.archiveEnvelope(id,archiveBoolean);
         res.status(204).send(`Envelope with id ${id} archived.`)
@@ -83,7 +89,7 @@ function deleteEnvelope(req,res,next){
 
 // intermediary functions
 function processId(req,res,next,id){
-    const found = getEnvelopeById(id);
+    const found = db.getEnvelopeById(Number(id));
     if(found){
         req.found = found;
         next();
@@ -93,7 +99,7 @@ function processId(req,res,next,id){
 }
 
 function newEnvelopeInstance(req,res,next){
-    const newValues = req.body;
+    const newValues = req.body;    
     let newInstance;
     if(req.method === 'PUT'){ // call constructor func with original ID for PUT requests
         const original = req.found;
