@@ -4,6 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   font-family: 'Arial', sans-serif;
 }
 
@@ -35,3 +36,6 @@ button:hover {
   transition: background-color 0.2s;
 }
 
+.currency:before{
+  content: '€';
+}
