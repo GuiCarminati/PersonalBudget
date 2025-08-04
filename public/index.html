@@ -3,14 +3,14 @@
 <html lang="en">
 
 <head>
-    <title>Personal Budget</title>
+    <title>Personal Budget Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <h1>Personal Budget</h1>
     <nav>
-        <a href="index.html">Home</a>
+        <a href="">Refresh ⟳</a>
     </nav>
     <p>&nbsp</p>
     <div class="balance-container">
@@ -53,29 +53,27 @@
                         <td>€500.00</td>
                         <td>€289.00</td>
                         <td>€211.00</td>
-                        <td><button class='envelope-button' id="env1-button">Update</button></td>
+                        <td><button class='envelope-update-button' id="env-button-1">Update</button></td>
                     </tr>
                     <tr id="env2-row">
                         <td>Leisure</td>
                         <td>€200.00</td>
                         <td>€85.00</td>
                         <td>€115.00</td>
-                        <td><button id="env2-button">Update</button></td>
+                        <td><button class='envelope-update-button' id="env-button-2">Update</button></td>
                     </tr>
                     <tr id="env3-row">
                         <td>Rent</td>
                         <td>€1500.00</td>
                         <td>€1500.00</td>
                         <td>€0.00</td>
-                        <td><button id="env3-button">Update</button></td>
-                    </tr>
+                        <td><button class='envelope-update-button' id="env-button-3">Update</button></td>                    </tr>
                 </tbody>
             </table>
         </div>
         <button id="new-envelope-button">Add new envelope</button>
-
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Personal Budget: Update Envelope</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Personal Budget</h1>
+    <nav>
+        <a href="index.html">Go back</a>
+        <a href="" id="edit-clear">Clear ⟳</a>
+    </nav>
+    <p>&nbsp</p>
+    <div class="edit-balance-summary-container">
+        <h2>My Envelope Balance</h2>
+        <div id="edit-balance-table">
+            <table style="width: 500px;">
+                <tbody>
+                    <tr style="font-weight: bold;" id="edit-balance-table-header">
+                        <td>Name</td>
+                        <td>Budget</td>
+                        <td>Used</td>
+                        <td>Balance</td>
+                    </tr>
+                </tbody>
+                <tbody id="edit-balance-summary-row-container">
+                    <tr id="edit-balance-summary-row">
+                        <!-- <td>Example Envelope</td>
+                        <td>€2,200.00</td>
+                        <td>€1,874.00</td>
+                        <td>€326.00</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p>&nbsp</p>
+    <div id="edit-actions-container">
+    <h2>Actions</h2>
+        <div id="edit-actions-table">
+            <table style="width: 500px;">
+                <tbody id="edit-actions-table-rows">
+                    <tr>
+                        <td><input  id="edit-actions-new-name-text" type="text" placeholder="New Envelope Name"></td>
+                        <td><button id="edit-actions-new-name-update-button">Update Name</button></td>
+                    </tr>
+                    <tr>
+                        <td><input  id="edit-actions-transaction-amount" type="number" placeholder="Transaction amount" min="0"></td>
+                        <td><button id="edit-actions-update-balance-button">Take from envelope</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button id="archive-envelope-button">Archive</button>
+            <button id="delete-envelope-button">Delete</button>
+        </div>
+
+    </div>
+    <script type="module" src="updateEnvelope.js"></script>
+</body>
+
+</html>

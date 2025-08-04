@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>Personal Budget: Update Envelope</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h1>Personal Budget</h1>
+        <nav>
+            <a href="index.html">Go back</a>
+            <a href="">Clear ⟳</a>
+        </nav>
+        <p>&nbsp</p>
+        <div id="new-envelope-details-container">
+            <h2>Actions</h2>
+            <form action="" id="new-envelope-form">
+                <input id="new-envelope-name" type="text" placeholder="New Envelope Name" required>
+                <br>
+                <input id="new-envelope-budget" type="number" placeholder="Envelope Budget" min="1" required>
+                <br>
+                <button id="new-envelope-submit-button" type="submit">Create Envelope</button>
+            </form>
+        </div>
+        <script src="createEnvelope.js"></script>
+    </body>
+
+</html>
