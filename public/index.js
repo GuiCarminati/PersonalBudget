@@ -7,7 +7,6 @@ const envelopeTableRowsContainer = document.getElementById('envelopes-table-rows
 
 populateDashboard();
 
-
 function populateTable(arrayOfValues,tbodyElement){
     arrayOfValues.forEach((rowValues,index) => {       
         const newRow = document.createElement('tr');
