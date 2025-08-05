@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>Personal Budget: Transactions History</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h1>Personal Budget</h1>
+        <nav>
+            <a href="index.html">Go back</a>
+            <a href="">Refresh ⟳</a>
+        </nav>
+        <br>
+        <div id="new-envelope-details-container">
+            <h2>Transactions History</h2>
+            <table class="transactions-table">
+                <thead id="transactions-table-headers">
+                    <tr>
+                        <th style="width: 20%;">Timestamp</th>
+                        <th style="width: 35%;">Source Envelope</th>
+                        <th style="width: 35%;">Destination Envelope</th>
+                        <th style="width: 10%;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-table-list">
+                    <tr>
+                        <td>2025-08-05 18:31</td>
+                        <td>Example Source 1</td>
+                        <td>Example Destination 1</td>
+                        <td>€30</td>
+                    </tr>
+                    <tr>
+                        <td>2025-08-05 19:03</td>
+                        <td>Example Source 2</td>
+                        <td>-</td>
+                        <td>€300.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button id="add-transaction-button">Add transaction</button>
+        </div>
+        <script type="module" src="transactionsHistory.js"></script>
+    </body>
+
+</html>

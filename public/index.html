@@ -11,6 +11,7 @@
     <h1>Personal Budget</h1>
     <nav>
         <a href="">Refresh ⟳</a>
+        <a href="./transactionsHistory.html">Transactions History</a>
     </nav>
     <p>&nbsp</p>
     <div class="balance-container">
@@ -39,31 +40,31 @@
     <h2>My Envelopes</h2>
         <div id="envelopes-table">
             <table style="width: 500px;">
-                <tbody id="envelopes-table-headers">
-                    <tr style="font-weight: bold;" id="envelopes-table-header">
-                        <td>Envelope</td>
-                        <td>Budget</td>
-                        <td>Used</td>
-                        <td>Balance</td>
+                <thead id="envelopes-table-headers">
+                    <tr id="envelopes-table-header">
+                        <th>Envelope</th>
+                        <th>Budget</th>
+                        <th>Used</th>
+                        <th>Balance</th>
                     </tr>
-                </tbody>
+                </thead>
                 <tbody id="envelopes-table-rows">
                     <tr id="env1-row">
-                        <td>Groceries</td>
+                        <td>Example Envelope 1</td>
                         <td>€500.00</td>
                         <td>€289.00</td>
                         <td>€211.00</td>
                         <td><button class='envelope-update-button' id="env-button-1">Update</button></td>
                     </tr>
                     <tr id="env2-row">
-                        <td>Leisure</td>
+                        <td>Envelope 2</td>
                         <td>€200.00</td>
                         <td>€85.00</td>
                         <td>€115.00</td>
                         <td><button class='envelope-update-button' id="env-button-2">Update</button></td>
                     </tr>
                     <tr id="env3-row">
-                        <td>Rent</td>
+                        <td>Envelope 3</td>
                         <td>€1500.00</td>
                         <td>€1500.00</td>
                         <td>€0.00</td>
@@ -71,6 +72,8 @@
                 </tbody>
             </table>
         </div>
+        <br>
+        <button id="add-transaction-button">Add transaction</button>        
         <button id="new-envelope-button">Add new envelope</button>
     </div>
     <script type="module" src="index.js"></script>

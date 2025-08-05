@@ -1,4 +1,9 @@
 
+function addNewTransactionButton(){
+    console.log('add new transaction clicked');
+    window.location.href = './addTransaction.html';
+}
+
 function populateRow(envObj,rowElement){
     rowElement.innerHTML='';
     if(!envObj) return;
@@ -50,5 +55,6 @@ function showError(message,windowAlert=false,consoleLog=true){
 export {
     createCell, 
     populateRow,
-    showError
+    showError, 
+    addNewTransactionButton
 }

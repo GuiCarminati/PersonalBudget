@@ -1,4 +1,4 @@
-import { populateRow } from './utils.js';
+import { populateRow, addNewTransactionButton } from './utils.js';
 
 const totalBalanceRowContainer = document.getElementById('total-balance-row-container');
 const envelopeTableRowsContainer = document.getElementById('envelopes-table-rows');
@@ -76,6 +76,9 @@ function addNewEnvelopeButton(){
 }
 
 function loadButtonListeners(){
+    // Add Transaction button
+    const addTransactionBtnElement = document.getElementById('add-transaction-button');
+    addTransactionBtnElement.addEventListener('click',addNewTransactionButton);
     // Add New Envelope button
     const newEnvelopeBtnElement = document.getElementById('new-envelope-button');
     newEnvelopeBtnElement.addEventListener('click',addNewEnvelopeButton);
