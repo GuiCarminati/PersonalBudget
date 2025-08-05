@@ -1,9 +1,9 @@
 class Envelope {
-    constructor(id,name,budget,startingBalance) {
+    constructor(id,name,budget) {
         this.id = id;
         this.name = name;
         this.budget = budget;
-        this.currentBalance = startingBalance;
+        this.currentBalance = budget;
         this.archived = false;
     }
 }
