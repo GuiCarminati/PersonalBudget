@@ -5,13 +5,17 @@ const db = require('./db');
 const apiRouter = express.Router();
 module.exports = apiRouter;
 
+// transaction operations
+apiRouter.get('/transactions',getAllTransactions);
+apiRouter.get('/transactions/:transactionId',getTransaction);
+apiRouter.post('/transactions/add',addTransaction);
+// envelope operations
 apiRouter.get('/',getAllEnvelopes);
 apiRouter.get('/archived',getArchivedEnvelopes);
 apiRouter.param('id',processId);
 apiRouter.get('/:id',getEnvelope);
 apiRouter.post('/',newEnvelopeInstance,createEnvelope);
 apiRouter.put('/:id',newEnvelopeInstance,updateEnvelope);
-apiRouter.put('/:id/balance',updateBalance);
 apiRouter.put('/:id/archive',archiveEnvelope);
 apiRouter.delete('/:id',deleteEnvelope);
 
@@ -55,17 +59,6 @@ function updateEnvelope(req,res,next){
     }
 }
 
-function updateBalance(req,res,next){
-    const id = req.found.id;
-    const value = req.body.transactionValue;
-    try {
-        const env = db.updateBalance(id,value);
-        res.status(200).send(env);
-    } catch (error) {
-        next(createError(error.message));
-    }
-}
-
 function archiveEnvelope(req,res,next){
     const id = req.found.id;
     const archiveBoolean = !(req.found.archived); // flips current archived state    
@@ -82,6 +75,47 @@ function deleteEnvelope(req,res,next){
     try {
         db.deleteEnvelope(id);
         res.status(204).send(`Envelope with id ${id} deleted.`)
+    } catch (error) {
+        next(createError(error.message));
+    }
+}
+
+
+// transaction functions
+
+function getAllTransactions(req,res,next){
+    const transactions = db.getAllTransactions();
+    res.status(200).send(transactions);
+}
+
+function getTransaction(req,res,next){
+    try {
+        const id = Number(req.params.transactionId);
+        const transaction = db.getTransactionById(id);
+        res.status(200).send(transaction);
+    } catch (error) {
+        next(createError(error.message));
+    }
+}
+
+/**
+ * Adds a transaction.
+ * @param {Object} req.body - The request body. expected request body: {amount, sourceID, destID}
+ * @param {number} req.body.amount - Amount to transfer (must be greater than 0).
+ * @param {number} [req.body.sourceID] - Source envelope ID (optional).
+ * @param {number} [req.body.destID] - Destination envelope ID (optional).
+ * If one of sourceID or destID is not provided, the transaction is considered to be to/from an external source/destination.
+ * If both are not provided, an error is thrown.
+ * @returns {Object} The created transaction object.
+ */
+function addTransaction(req,res,next){
+    const reqBody = req.body;
+    const sourceID = reqBody.sourceID ? Number(reqBody.sourceID) : null;
+    const destID = reqBody.destID ? Number(reqBody.destID) : null;
+    const amount = Number(reqBody.amount);
+    try {
+        const transaction = db.addTransaction(amount, sourceID, destID);
+        res.status(201).send(transaction);
     } catch (error) {
         next(createError(error.message));
     }
@@ -106,14 +140,12 @@ function newEnvelopeInstance(req,res,next){
         newInstance = db.envelopeConstructor(
             newValues.name || original.name, // if no value given in req.body, keep original values
             newValues.budget || original.budget,
-            newValues.balance || original.currentBalance,
             original.id
         );
     } else if(req.method === 'POST'){  // call constructor func without ID for POST requests
         newInstance = db.envelopeConstructor(
             newValues.name,
-            newValues.budget,
-            newValues.balance
+            newValues.budget
         );
     }
     req.newInstance = newInstance;
