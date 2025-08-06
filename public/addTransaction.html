@@ -17,7 +17,7 @@
         <div id="new-envelope-details-container">
             <h2>Actions</h2>
             <form action="" id="add-transaction-form">
-                <input id="transaction-amount" type="number" placeholder="Transaction amount" min="0" required>
+                <input id="transaction-amount" type="number" required placeholder="Transaction amount" min="0">
                 <select id="transaction-source-id" required>
                     <option value="" disabled selected>Source Envelope ID</option>
                 </select>
@@ -28,7 +28,7 @@
                 <button id="transaction-submit-button" type="submit">Add Transaction</button>
             </form>
         </div>
-        <script src="addTransaction.js"></script>
+        <script type="module" src="addTransaction.js"></script>
     </body>
 
 </html>
