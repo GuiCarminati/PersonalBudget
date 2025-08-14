@@ -8,6 +8,10 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
+th {
+  font-weight: bold;
+}
+
 a {
   color: #fff;
 }
@@ -16,7 +20,7 @@ nav a {
   margin: 10px;
 }
 
-input {
+input, select {
   font-size: 16px;
   padding: 10px;
 }
@@ -38,4 +42,9 @@ button:hover {
 
 .currency:before{
   content: '€';
+}
+
+.transactions-table td, .transactions-table th{
+  border: solid;
+  padding: 15px;
 }

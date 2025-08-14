@@ -18,14 +18,14 @@
         <h2>My Envelope Balance</h2>
         <div id="edit-balance-table">
             <table style="width: 500px;">
-                <tbody>
-                    <tr style="font-weight: bold;" id="edit-balance-table-header">
-                        <td>Name</td>
-                        <td>Budget</td>
-                        <td>Used</td>
-                        <td>Balance</td>
+                <thead>
+                    <tr id="edit-balance-table-header">
+                        <th>Name</th>
+                        <th>Budget</th>
+                        <th>Used</th>
+                        <th>Balance</th>
                     </tr>
-                </tbody>
+                </thead>
                 <tbody id="edit-balance-summary-row-container">
                     <tr id="edit-balance-summary-row">
                         <!-- <td>Example Envelope</td>
@@ -46,10 +46,6 @@
                     <tr>
                         <td><input  id="edit-actions-new-name-text" type="text" placeholder="New Envelope Name"></td>
                         <td><button id="edit-actions-new-name-update-button">Update Name</button></td>
-                    </tr>
-                    <tr>
-                        <td><input  id="edit-actions-transaction-amount" type="number" placeholder="Transaction amount" min="0"></td>
-                        <td><button id="edit-actions-update-balance-button">Take from envelope</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -1,9 +1,7 @@
 import { populateRow, showError } from "./utils.js";
 
 const envelopeNameInputElement = document.getElementById('edit-actions-new-name-text');
-const transactionAmountElement = document.getElementById('edit-actions-transaction-amount');
 const updateNameButtonElement = document.getElementById('edit-actions-new-name-update-button');
-const updateBalanceButtonElement = document.getElementById('edit-actions-update-balance-button');
 const archiveButtonElement = document.getElementById('archive-envelope-button');
 const deleteButtonElement = document.getElementById('delete-envelope-button');
 const envelopeSummaryRowContainer = document.getElementById('edit-balance-summary-row-container');
@@ -48,12 +46,6 @@ function updateEnvelopeName(id){
     httpRequest(`/api/envelopes/${id}`,'name',{name: newName})
 }
 
-function updateEnvelopeBalance(id){
-    const transactionValue = Number(transactionAmountElement.value);
-    if(!transactionValue || transactionValue <= 0) return showError('invalid amount',true);
-    httpRequest(`/api/envelopes/${id}/balance`,'balance',{transactionValue: -transactionValue})
-}
-
 function deleteEnvelope(id){
     if(envelopeValues.balance > 0) {
         return showError(`Unable to delete. Envelope currently has a balance of €${envelopeValues.balance}`,true);
@@ -75,7 +67,6 @@ async function httpRequest(path,type,bodyObj){
     let method;
     switch(type){
         case 'archive': method='PUT'; break;
-        case 'balance': method='PUT'; break;
         case 'name': method='PUT'; break;
         case 'delete': method='DELETE'; break;
         default: return showError('invalid request');
@@ -93,9 +84,7 @@ async function httpRequest(path,type,bodyObj){
         else return res.json();
     })
     .then(res => {
-        console.log(res);
-        if(type==='balance' || type==='name'){
-            console.log(res);
+        if(type==='name'){
             refreshEnvelopeValues(res);
         } else if (type==='delete') {
             console.log(`Envelope has been deleted`);
@@ -110,7 +99,6 @@ async function httpRequest(path,type,bodyObj){
 // helper functions
 function loadButtonListeners(id){
     updateNameButtonElement.addEventListener('click',()=>updateEnvelopeName(id));
-    updateBalanceButtonElement.addEventListener('click',()=>updateEnvelopeBalance(id));
     archiveButtonElement.addEventListener('click',()=>archiveEnvelope(id));
     deleteButtonElement.addEventListener('click',()=>deleteEnvelope(id));
     refreshArchiveButtonState();
